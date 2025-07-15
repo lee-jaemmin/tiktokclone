@@ -3,8 +3,8 @@ import 'package:tiktokclone/constants/sizes.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AuthButton extends StatelessWidget {
-  final String
-  text; // 외부에서 AuthButton을 어찌 사용하는지 보면 됨. text 라는 String 객체가 파라미터로 쓰임.
+  final String text;
+  // 외부에서 AuthButton을 어찌 사용하는지 보면 됨. text 라는 String 객체가 파라미터로 쓰임.
   final FaIcon icon;
 
   const AuthButton({super.key, required this.text, required this.icon});
