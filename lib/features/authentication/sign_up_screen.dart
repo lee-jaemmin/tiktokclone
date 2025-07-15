@@ -4,6 +4,7 @@ import 'package:tiktokclone/constants/gaps.dart';
 import 'package:tiktokclone/constants/sizes.dart';
 import 'package:tiktokclone/features/authentication/email_screen.dart';
 import 'package:tiktokclone/features/authentication/log_in_screen.dart';
+import 'package:tiktokclone/features/authentication/username_screen.dart';
 import 'package:tiktokclone/features/authentication/widgets/auth_button.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -25,7 +26,7 @@ class SignUpScreen extends StatelessWidget {
     // _ 는 private을 의미
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => EmailScreen(),
+        builder: (context) => UserNameScreen(),
       ),
     );
   }

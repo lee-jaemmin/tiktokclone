@@ -36,6 +36,7 @@ class EmailScreen extends StatelessWidget {
               "You can always change later",
               style: TextStyle(color: Colors.grey.shade700),
             ),
+            TextField(),
           ],
         ),
       ),
