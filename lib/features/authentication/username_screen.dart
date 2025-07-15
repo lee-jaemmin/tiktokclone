@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tiktokclone/constants/sizes.dart';
 import 'package:tiktokclone/constants/gaps.dart';
+import 'package:tiktokclone/features/authentication/email_screen.dart';
+import 'package:tiktokclone/features/authentication/widgets/form_button.dart';
 
 class UserNameScreen extends StatefulWidget {
   const UserNameScreen({super.key});
@@ -16,7 +18,6 @@ class _UserNameScreenState extends State<UserNameScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     _usernameController.addListener(() {
@@ -27,14 +28,26 @@ class _UserNameScreenState extends State<UserNameScreen> {
   }
 
   @override
+  void dispose() {
+    _usernameController.dispose();
+    super.dispose();
+  }
+
+  void _onNextTap() {
+    if (_username.isEmpty) return; // 비어있으면 리턴
+
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => EmailScreen(),
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        centerTitle: true,
-        // 아이콘, 텍스트 색 변경
-        foregroundColor: Colors.black,
-        elevation: 0,
         title: Text(
           "Sign up",
         ),
@@ -76,29 +89,9 @@ class _UserNameScreenState extends State<UserNameScreen> {
               cursorColor: Theme.of(context).primaryColor,
             ),
             Gaps.v32,
-            FractionallySizedBox(
-              widthFactor: 1,
-              child: AnimatedContainer(
-                duration: Duration(
-                  milliseconds: 300,
-                ),
-                padding: EdgeInsets.symmetric(vertical: Sizes.size14),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Sizes.size5),
-                  color: _username.isEmpty
-                      ? Colors.grey.shade300
-                      : Theme.of(context).primaryColor,
-                ),
-                child: Text(
-                  'Sign up',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: Sizes.size16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
+            GestureDetector(
+              onTap: () => _onNextTap,
+              child: FormButton(disabled: _username.isEmpty),
             ),
           ],
         ),
