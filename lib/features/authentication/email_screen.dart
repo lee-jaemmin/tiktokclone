@@ -121,6 +121,7 @@ class _EmailScreenState extends State<EmailScreen> {
               GestureDetector(
                 onTap: _onSubmit, // onTap일 때만 실행 하고 싶으면 () 없이.
                 child: FormButton(
+                  text: "Next",
                   disabled: _email.isEmpty || _isEmailValid() != null,
                 ),
               ),

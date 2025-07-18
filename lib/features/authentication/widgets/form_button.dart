@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tiktokclone/constants/sizes.dart';
 
 class FormButton extends StatelessWidget {
-  const FormButton({super.key, required this.disabled});
+  FormButton({super.key, required this.disabled, required this.text});
 
   final bool disabled;
+  String text;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class FormButton extends StatelessWidget {
             milliseconds: 300,
           ),
           child: Text(
-            'Next',
+            text,
             textAlign: TextAlign.center,
           ),
         ),

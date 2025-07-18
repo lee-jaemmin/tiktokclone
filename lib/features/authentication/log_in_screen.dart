@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tiktokclone/constants/gaps.dart';
 import 'package:tiktokclone/constants/sizes.dart';
+import 'package:tiktokclone/features/authentication/login_form_screen.dart';
 import 'package:tiktokclone/features/authentication/widgets/auth_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -9,6 +10,12 @@ class LoginScreen extends StatelessWidget {
 
   void onSignupTap(BuildContext context) {
     Navigator.of(context).pop(); // 여기서도 push하면 stack에 계속 쌓임.
+  }
+
+  void _onEmailLoginTap(BuildContext context) {
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (context) => LoginFormScreen()));
   }
 
   @override
@@ -42,9 +49,12 @@ class LoginScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               Gaps.v40,
-              AuthButton(
-                text: "Use email & password",
-                icon: FaIcon(FontAwesomeIcons.user),
+              GestureDetector(
+                onTap: () => _onEmailLoginTap(context),
+                child: AuthButton(
+                  text: "Use email & password",
+                  icon: FaIcon(FontAwesomeIcons.user),
+                ),
               ),
               Gaps.v16,
 
