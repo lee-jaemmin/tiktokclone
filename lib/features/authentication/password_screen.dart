@@ -15,6 +15,7 @@ class PasswordScreen extends StatefulWidget {
 class _PasswordScreenState extends State<PasswordScreen> {
   final TextEditingController _passwordController = TextEditingController();
   String _password = "";
+  bool _obscureText = true;
 
   @override
   void initState() {
@@ -41,8 +42,6 @@ class _PasswordScreenState extends State<PasswordScreen> {
     // Password controller 장점
     _passwordController.clear();
   }
-
-  bool _obscureText = true;
 
   void _toggleObscureText() {
     _obscureText = !_obscureText;
@@ -144,7 +143,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                     size: Sizes.size20,
                   ),
                   Gaps.h5,
-                  Text("8 to 10 characters"),
+                  Text("8 to 20 characters"),
                 ],
               ),
               Gaps.v4,
