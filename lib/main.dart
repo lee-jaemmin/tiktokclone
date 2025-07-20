@@ -30,6 +30,11 @@ class TikTokApp extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
+        bottomAppBarTheme: BottomAppBarTheme(
+          color: Colors.grey.shade50,
+          elevation: 1,
+          height: 150,
+        ),
       ),
       home: InterestScreen(),
     );
