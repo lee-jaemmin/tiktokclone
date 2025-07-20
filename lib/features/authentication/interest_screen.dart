@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tiktokclone/constants/gaps.dart';
 import 'package:tiktokclone/constants/sizes.dart';
+import 'package:tiktokclone/features/onboarding/tutorial_screen.dart';
 import 'package:tiktokclone/features/onboarding/widgets/interset_button.dart';
 
 const interests = [
@@ -75,6 +76,16 @@ class _InterestScreenState extends State<InterestScreen> {
   void dispose() {
     _scrollController.dispose();
     super.dispose();
+  }
+
+  void _onNextTap() {
+    Navigator.of(
+      context,
+    ).push(
+      MaterialPageRoute(
+        builder: (context) => TutorialScreen(),
+      ),
+    );
   }
 
   @override
@@ -172,20 +183,23 @@ class _InterestScreenState extends State<InterestScreen> {
                   ),
                 ),
                 Gaps.h16,
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 60,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  child: Text(
-                    "Next",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: Sizes.size20,
+                GestureDetector(
+                  onTap: _onNextTap,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 60,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    child: Text(
+                      "Next",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: Sizes.size20,
+                      ),
                     ),
                   ),
                 ),
