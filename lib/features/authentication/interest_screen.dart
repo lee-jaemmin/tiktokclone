@@ -115,22 +115,6 @@ class _InterestScreenState extends State<InterestScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Chooses your \n interests",
-                  style: TextStyle(
-                    fontSize: Sizes.size36,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-                Gaps.v16,
-                Text(
-                  "Get better video recommends",
-                  style: TextStyle(
-                    fontSize: Sizes.size24,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.grey.shade700,
-                  ),
-                ),
                 Gaps.v40,
                 Wrap(
                   // 가로로 배치하고 알아서 다음줄로 넘어감.

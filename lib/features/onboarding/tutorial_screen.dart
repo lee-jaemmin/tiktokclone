@@ -99,6 +99,8 @@ class _TutorialScreenState extends State<TutorialScreen> {
               duration: Duration(milliseconds: 200),
               opacity: _showingPage == Page.second ? 1 : 0,
               child: CupertinoButton(
+                onPressed: () {},
+                color: Theme.of(context).primaryColor,
                 child: Text(
                   "Enter the App",
                   style: TextStyle(
@@ -106,8 +108,6 @@ class _TutorialScreenState extends State<TutorialScreen> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                onPressed: () {},
-                color: Theme.of(context).primaryColor,
               ),
             ),
           ),
