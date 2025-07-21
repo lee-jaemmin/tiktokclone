@@ -24,11 +24,15 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
         // if 모든 게 null: true, 하나라도 not null: false
         _formKey.currentState!.save();
         //save(): 모든 입력 텍스트에 대해 onSaved 콜백 함수 실행
-        Navigator.push(
+        Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
             builder: (context) => InterestScreen(),
           ),
+          (route) {
+            // pushAndRemove가 필요한 함수에 맞게 알아서 자료형이 설정. 이름을 a로 해도 Route자료형으로 인식함.
+            return false;
+          },
         );
       }
     }
