@@ -4,6 +4,7 @@ import 'package:tiktokclone/constants/gaps.dart';
 import 'package:tiktokclone/constants/sizes.dart';
 import 'package:tiktokclone/features/main_navigation/widgets/nav_tab.dart';
 import 'package:tiktokclone/features/main_navigation/widgets/post_video_button.dart';
+import 'package:tiktokclone/features/videos/video_timeline_screen.dart';
 import 'package:tiktokclone/features/videos/vidoes_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
@@ -38,7 +39,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         children: [
           Offstage(
             offstage: _selectedIndex != 0,
-            child: Container(),
+            child: VideoTimelineScreen(),
           ),
           Offstage(
             offstage: _selectedIndex != 1,
