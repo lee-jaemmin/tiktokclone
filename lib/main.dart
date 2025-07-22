@@ -3,6 +3,7 @@ import 'package:tiktokclone/constants/sizes.dart';
 import 'package:tiktokclone/constants/gaps.dart';
 import 'package:tiktokclone/features/authentication/interest_screen.dart';
 import 'package:tiktokclone/features/authentication/sign_up_screen.dart';
+import 'package:tiktokclone/features/main_navigation/main_navigation_screen.dart';
 
 void main() {
   runApp(const TikTokApp());
@@ -36,7 +37,7 @@ class TikTokApp extends StatelessWidget {
           height: 150,
         ),
       ),
-      home: InterestScreen(),
+      home: MainNavigationScreen(),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktokclone/constants/gaps.dart';
 import 'package:tiktokclone/constants/sizes.dart';
 import 'package:tiktokclone/features/main_navigation/widgets/nav_tab.dart';
+import 'package:tiktokclone/features/main_navigation/widgets/stafeful_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   MainNavigationScreen({super.key});
@@ -15,21 +16,11 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _selectedIndex = 0;
 
   final screens = [
-    Center(
-      child: Text('home'),
-    ),
-    Center(
-      child: Text('Search'),
-    ),
-    Center(
-      child: Text('Search'),
-    ),
-    Center(
-      child: Text('Search'),
-    ),
-    Center(
-      child: Text('Search'),
-    ),
+    StafefulScreen(key: GlobalKey()), // key를 줘서 각각 다른 화면이라고 알려줌.
+    StafefulScreen(key: GlobalKey()),
+    Container(),
+    StafefulScreen(key: GlobalKey()),
+    StafefulScreen(key: GlobalKey()),
   ];
 
   void _onTap(int index) {
@@ -40,6 +31,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: screens[_selectedIndex],
       bottomNavigationBar: BottomAppBar(
         height: 100,
         color: Colors.black,
@@ -52,24 +44,28 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 text: "Home",
                 isSelected: _selectedIndex == 0,
                 icon: FontAwesomeIcons.house,
+                selectedIcon: FontAwesomeIcons.house,
                 myonTap: () => _onTap(0),
               ),
               NavTab(
                 text: "Discover",
                 isSelected: _selectedIndex == 1,
-                icon: FontAwesomeIcons.magnifyingGlass,
+                icon: FontAwesomeIcons.compass,
+                selectedIcon: FontAwesomeIcons.solidCompass,
                 myonTap: () => _onTap(1),
               ),
               NavTab(
                 text: "Inbox",
                 isSelected: _selectedIndex == 3,
-                icon: FontAwesomeIcons.inbox,
+                icon: FontAwesomeIcons.message,
+                selectedIcon: FontAwesomeIcons.solidMessage,
                 myonTap: () => _onTap(3),
               ),
               NavTab(
                 text: "Profile",
                 isSelected: _selectedIndex == 4,
                 icon: FontAwesomeIcons.user,
+                selectedIcon: FontAwesomeIcons.solidUser,
                 myonTap: () => _onTap(4),
               ),
               /*
