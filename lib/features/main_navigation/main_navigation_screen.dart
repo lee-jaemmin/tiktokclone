@@ -3,7 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktokclone/constants/gaps.dart';
 import 'package:tiktokclone/constants/sizes.dart';
 import 'package:tiktokclone/features/main_navigation/widgets/nav_tab.dart';
-import 'package:tiktokclone/features/main_navigation/widgets/stafeful_screen.dart';
+import 'package:tiktokclone/features/main_navigation/widgets/post_video_button.dart';
+import 'package:tiktokclone/features/videos/vidoes_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   MainNavigationScreen({super.key});
@@ -15,23 +16,44 @@ class MainNavigationScreen extends StatefulWidget {
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _selectedIndex = 0;
 
-  final screens = [
-    StafefulScreen(key: GlobalKey()), // key를 줘서 각각 다른 화면이라고 알려줌.
-    StafefulScreen(key: GlobalKey()),
-    Container(),
-    StafefulScreen(key: GlobalKey()),
-    StafefulScreen(key: GlobalKey()),
-  ];
-
   void _onTap(int index) {
     _selectedIndex = index;
     setState(() {});
   }
 
+  void _onPostVideoButtonTap() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => VidoesScreen(),
+        fullscreenDialog: true, // full screen.
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[_selectedIndex],
+      body: Stack(
+        children: [
+          Offstage(
+            offstage: _selectedIndex != 0,
+            child: Container(),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 1,
+            child: Container(),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 3,
+            child: Container(),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 4,
+            child: Container(),
+          ),
+        ],
+      ),
       bottomNavigationBar: BottomAppBar(
         height: 100,
         color: Colors.black,
@@ -39,6 +61,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           padding: const EdgeInsets.all(Sizes.size12),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               NavTab(
                 text: "Home",
@@ -54,6 +77,12 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 selectedIcon: FontAwesomeIcons.solidCompass,
                 myonTap: () => _onTap(1),
               ),
+              Gaps.h20,
+              GestureDetector(
+                onTap: _onPostVideoButtonTap,
+                child: PostVideoButton(),
+              ),
+              Gaps.h20,
               NavTab(
                 text: "Inbox",
                 isSelected: _selectedIndex == 3,
