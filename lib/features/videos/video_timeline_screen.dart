@@ -52,6 +52,7 @@ class _VideoTimelineScreenState extends State<VideoTimelineScreen> {
       controller: _pageController,
       itemBuilder: (context, index) => VideoPost(
         onVideoFinished: _onVideoFinished,
+        index: index,
       ),
       itemCount: _itemCount, // 개수 알려줘야함.
       scrollDirection: Axis.vertical,
