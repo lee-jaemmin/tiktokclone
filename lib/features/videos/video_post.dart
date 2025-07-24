@@ -23,8 +23,9 @@ class VideoPost extends StatefulWidget {
 
 class _VideoPostState extends State<VideoPost>
     with SingleTickerProviderStateMixin {
+  //with + Mixin == 클래스 (여기서는 STPS) 전체 복사
   final VideoPlayerController _videoPlayerController =
-      VideoPlayerController.asset("assets/videos/gh.MP4");
+      VideoPlayerController.asset("assets/videos/air.mp4");
 
   bool _isPaused = false;
   final Duration _animationDuration = Duration(milliseconds: 300);
@@ -77,17 +78,12 @@ class _VideoPostState extends State<VideoPost>
     super.initState();
     _initVideoPlayer();
     _animationController = AnimationController(
-      vsync: this,
+      vsync: this, // 위젯 안 보일 때 애니메이션 동작 x
       lowerBound: 1.0,
       upperBound: 1.5,
       value: 1.5, // 시작값 설정. upperBound 시작 유도
       duration: _animationDuration,
     );
-
-    _animationController.addListener(() {
-      // 애니메이션이 바뀔 때마다 호출
-      setState(() {});
-    });
   }
 
   @override
@@ -123,8 +119,15 @@ class _VideoPostState extends State<VideoPost>
           Positioned.fill(
             child: IgnorePointer(
               child: Center(
-                child: Transform.scale(
-                  scale: _animationController.value,
+                child: AnimatedBuilder(
+                  animation: _animationController,
+                  builder: (context, child) {
+                    // 두 번째 인자는 무조건 AnimatedBuilder의 child
+                    return Transform.scale(
+                      scale: _animationController.value,
+                      child: child,
+                    );
+                  },
                   child: AnimatedOpacity(
                     duration: _animationDuration,
                     opacity: _isPaused ? 1 : 0,
