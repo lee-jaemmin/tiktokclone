@@ -1,9 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktokclone/constants/gaps.dart';
 import 'package:tiktokclone/constants/sizes.dart';
+import 'package:tiktokclone/features/videos/widgets/video_caption.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -143,28 +141,12 @@ class _VideoPostState extends State<VideoPost>
             ),
           ),
           Positioned(
+            width: MediaQuery.of(context).size.width * 0.85,
             bottom: 30,
             left: 30,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Jaemin",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: Sizes.size18,
-                  ),
-                ),
-                Gaps.v10,
-                Text(
-                  'Airshow in Seoul',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: Sizes.size16,
-                  ),
-                ),
-              ],
+            child: VideoCaption(
+              text:
+                  "Airshow in seoul it's a really long caption I love to talk really talkative. I just cannnot stop talking because talking is so fun!!!!!!!1",
             ),
           ),
         ],
