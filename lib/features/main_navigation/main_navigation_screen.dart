@@ -59,7 +59,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       ),
       bottomNavigationBar: BottomAppBar(
         height: 100,
-        color: Colors.black,
+        color: _selectedIndex == 0 ? Colors.black : Colors.white,
         child: Padding(
           padding: const EdgeInsets.all(Sizes.size12),
           child: Row(
@@ -72,6 +72,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 icon: FontAwesomeIcons.house,
                 selectedIcon: FontAwesomeIcons.house,
                 myonTap: () => _onTap(0),
+                selectedIndex: _selectedIndex,
               ),
               NavTab(
                 text: "Discover",
@@ -79,11 +80,12 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 icon: FontAwesomeIcons.compass,
                 selectedIcon: FontAwesomeIcons.solidCompass,
                 myonTap: () => _onTap(1),
+                selectedIndex: _selectedIndex,
               ),
               Gaps.h20,
               GestureDetector(
                 onTap: _onPostVideoButtonTap,
-                child: PostVideoButton(),
+                child: PostVideoButton(selectedIndex: _selectedIndex),
               ),
               Gaps.h20,
               NavTab(
@@ -92,6 +94,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 icon: FontAwesomeIcons.message,
                 selectedIcon: FontAwesomeIcons.solidMessage,
                 myonTap: () => _onTap(3),
+                selectedIndex: _selectedIndex,
               ),
               NavTab(
                 text: "Profile",
@@ -99,6 +102,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 icon: FontAwesomeIcons.user,
                 selectedIcon: FontAwesomeIcons.solidUser,
                 myonTap: () => _onTap(4),
+                selectedIndex: _selectedIndex,
               ),
               /*
               정리하자면, 함수를 콜백한다는 전제는 똑같다.

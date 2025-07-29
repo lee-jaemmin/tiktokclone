@@ -10,6 +10,7 @@ class NavTab extends StatelessWidget {
     required this.icon,
     required this.myonTap,
     required this.selectedIcon,
+    required this.selectedIndex,
   });
 
   final String text;
@@ -17,6 +18,7 @@ class NavTab extends StatelessWidget {
   final IconData icon;
   final IconData selectedIcon;
   final Function myonTap;
+  final int selectedIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class NavTab extends StatelessWidget {
          인자가 있을 때 () => onTap(1)이런식으로 했지? 이것도 ()를 붙여서 직접 실행해준 것에 해당
         */
         child: Container(
-          color: Colors.black,
+          color: selectedIndex == 0 ? Colors.black : Colors.white,
           child: AnimatedOpacity(
             duration: Duration(milliseconds: 100),
             opacity: isSelected ? 1 : 0.5,
@@ -43,13 +45,17 @@ class NavTab extends StatelessWidget {
               children: [
                 FaIcon(
                   isSelected ? selectedIcon : icon,
-                  color: Colors.white,
+                  color: selectedIndex == 0
+                      ? Colors.white
+                      : Colors.grey.shade600,
                 ),
                 Gaps.v5,
                 Text(
                   text,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: selectedIndex == 0
+                        ? Colors.white
+                        : Colors.grey.shade600,
                   ),
                 ),
               ],
