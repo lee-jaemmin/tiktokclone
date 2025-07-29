@@ -58,6 +58,10 @@ class _VideoPostState extends State<VideoPost>
       // 재생
       _videoPlayerController.play();
     }
+    if (_videoPlayerController.value.isPlaying && info.visibleFraction == 0) {
+      // 재생 중이지만 아예 안 보일 때
+      _ontogglePause();
+    }
   }
 
   void _ontogglePause() {
