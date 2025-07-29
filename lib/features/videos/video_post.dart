@@ -65,6 +65,9 @@ class _VideoPostState extends State<VideoPost>
   }
 
   void _ontogglePause() {
+    if (!mounted) return;
+    if (!_videoPlayerController.value.isInitialized) return;
+
     if (_videoPlayerController.value.isPlaying) {
       // 재생 중이면
       // pause, 아이콘 줄이기
@@ -94,6 +97,7 @@ class _VideoPostState extends State<VideoPost>
 
   @override
   void dispose() {
+    _videoPlayerController.removeListener(_onVideoChange);
     _animationController.dispose();
     _videoPlayerController.dispose();
     super.dispose();
