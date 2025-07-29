@@ -42,18 +42,29 @@ class _VideoTimelineScreenState extends State<VideoTimelineScreen> {
     super.dispose();
   }
 
+  Future<void> _onRefresh() {
+    return Future.delayed(
+      Duration(seconds: 5),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
-      // builder 메소드: children 동시에 render x. 필요할 때 렌더
-      controller: _pageController,
-      itemBuilder: (context, index) => VideoPost(
-        onVideoFinished: _onVideoFinished,
-        index: index,
+    return RefreshIndicator(
+      onRefresh: _onRefresh,
+      displacement: 50,
+      edgeOffset: 10,
+      child: PageView.builder(
+        // builder 메소드: children 동시에 render x. 필요할 때 렌더
+        controller: _pageController,
+        itemBuilder: (context, index) => VideoPost(
+          onVideoFinished: _onVideoFinished,
+          index: index,
+        ),
+        itemCount: _itemCount, // 개수 알려줘야함.
+        scrollDirection: Axis.vertical,
+        onPageChanged: _onPageChanged, // int 변수는 flutter가 알아서 현재 페이지로 계산.
       ),
-      itemCount: _itemCount, // 개수 알려줘야함.
-      scrollDirection: Axis.vertical,
-      onPageChanged: _onPageChanged, // int 변수는 flutter가 알아서 현재 페이지로 계산.
     );
   }
 }
