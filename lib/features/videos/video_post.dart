@@ -101,6 +101,7 @@ class _VideoPostState extends State<VideoPost>
       _ontogglePause();
     }
     await showModalBottomSheet(
+      isScrollControlled: true,
       context: context,
       builder: (context) => VideoComments(),
     );
