@@ -4,6 +4,7 @@ import 'package:tiktokclone/constants/gaps.dart';
 import 'package:tiktokclone/constants/sizes.dart';
 import 'package:tiktokclone/features/videos/widgets/video_button.dart';
 import 'package:tiktokclone/features/videos/widgets/video_caption.dart';
+import 'package:tiktokclone/features/videos/widgets/video_comments.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -94,6 +95,19 @@ class _VideoPostState extends State<VideoPost>
     super.dispose();
   }
 
+  void _onCommentTap(BuildContext context) async {
+    if (_videoPlayerController.value.isPlaying) {
+      // 영상 재생 중이면 pause.
+      _ontogglePause();
+    }
+    await showModalBottomSheet(
+      context: context,
+      builder: (context) => VideoComments(),
+    );
+    // 유저가 댓글창 닫을 때까지 기다림. -> 뭔 말이야?
+    _ontogglePause();
+  }
+
   @override
   Widget build(BuildContext context) {
     return VisibilityDetector(
@@ -168,7 +182,13 @@ class _VideoPostState extends State<VideoPost>
                 Gaps.v20,
                 VideoButton(icon: FontAwesomeIcons.solidHeart, text: "3.0M"),
                 Gaps.v20,
-                VideoButton(icon: FontAwesomeIcons.solidComment, text: "22.K"),
+                GestureDetector(
+                  onTap: () => _onCommentTap(context),
+                  child: VideoButton(
+                    icon: FontAwesomeIcons.solidComment,
+                    text: "22.K",
+                  ),
+                ),
                 Gaps.v20,
                 VideoButton(icon: FontAwesomeIcons.share, text: "Share"),
               ],
