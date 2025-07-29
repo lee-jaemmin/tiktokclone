@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktokclone/constants/gaps.dart';
 import 'package:tiktokclone/constants/sizes.dart';
+import 'package:tiktokclone/features/videos/widgets/video_button.dart';
 import 'package:tiktokclone/features/videos/widgets/video_caption.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -141,12 +143,35 @@ class _VideoPostState extends State<VideoPost>
             ),
           ),
           Positioned(
-            width: MediaQuery.of(context).size.width * 0.85,
-            bottom: 30,
-            left: 30,
+            width: MediaQuery.of(context).size.width * 0.75,
+            bottom: 20,
+            left: 20,
             child: VideoCaption(
               text:
                   "Airshow in seoul it's a really long caption I love to talk really talkative. I just cannnot stop talking because talking is so fun!!!!!!!1",
+            ),
+          ),
+          Positioned(
+            bottom: 20,
+            right: 10,
+            child: Column(
+              children: [
+                CircleAvatar(
+                  backgroundColor: Colors.black,
+                  foregroundColor: Colors.white,
+                  foregroundImage: NetworkImage(
+                    "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTnKq9TO4QuG5YCAPuQBNDwYKCdzbEmxmqjRFoNgwzWzra6Wr70jP6BYL7-FKcmqo_PVmjMRmWKymV265wmdh1OAA",
+                  ),
+                  radius: 25,
+                  child: Text('woals'),
+                ),
+                Gaps.v20,
+                VideoButton(icon: FontAwesomeIcons.solidHeart, text: "3.0M"),
+                Gaps.v20,
+                VideoButton(icon: FontAwesomeIcons.solidComment, text: "22.K"),
+                Gaps.v20,
+                VideoButton(icon: FontAwesomeIcons.share, text: "Share"),
+              ],
             ),
           ),
         ],
