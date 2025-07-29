@@ -35,6 +35,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      // 댓글창 켰을 때 영상 찌그러지는 거 방지
       body: Stack(
         children: [
           Offstage(
