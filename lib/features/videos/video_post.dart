@@ -101,7 +101,7 @@ class _VideoPostState extends State<VideoPost>
       _ontogglePause();
     }
     await showModalBottomSheet(
-      isScrollControlled: true,
+      isScrollControlled: true, // 댓글창 크기 조절
       context: context,
       builder: (context) => VideoComments(),
     );
