@@ -20,8 +20,7 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
     if (_formKey.currentState != null) {
       // <- null: Form객체가 있나 없나 확인.
       if (_formKey.currentState!.validate()) {
-        // validate(): 각 Textformfield의 'validator' 확인
-        // if 모든 게 null: true, 하나라도 not null: false
+        // 모든 validator가 null 반환 => true
         _formKey.currentState!.save();
         //save(): 모든 입력 텍스트에 대해 onSaved 콜백 함수 실행
         Navigator.pushAndRemoveUntil(
