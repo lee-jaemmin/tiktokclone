@@ -54,7 +54,6 @@ class InterestScreen extends StatefulWidget {
 
 class _InterestScreenState extends State<InterestScreen> {
   final ScrollController _scrollController = ScrollController();
-
   bool showTitle = false;
 
   void _onScroll() {
@@ -115,14 +114,23 @@ class _InterestScreenState extends State<InterestScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(
+                  "Choose your interest",
+                  style: TextStyle(fontSize: Sizes.size52, fontWeight: FontWeight.bold),
+                ),
+                Gaps.v24,
+                Text(
+                  "Get better video recommendations",
+                  style: TextStyle(fontSize: Sizes.size24),
+                ),
                 Gaps.v40,
                 Wrap(
-                  // 가로로 배치하고 알아서 다음줄로 넘어감.
-                  runSpacing: 15,
-                  spacing: 15,
+                  runSpacing: 15, // 세로
+                  spacing: 15, // 가로
                   children: [
-                    for (var interest in interests) // 무거우면 ListViewBuilder 써야됨.
-                      InterestButton(interest: interest),
+                    ...List.generate(interests.length, (index) {
+                      return InterestButton(interest: interests[index]);
+                    }),
                   ],
                 ),
               ],
@@ -133,7 +141,7 @@ class _InterestScreenState extends State<InterestScreen> {
       bottomNavigationBar: SafeArea(
         child: BottomAppBar(
           color: Colors.grey.shade50,
-          elevation: 10,
+          elevation: 1,
           height: 150,
           child: Padding(
             padding: EdgeInsets.only(
@@ -145,44 +153,48 @@ class _InterestScreenState extends State<InterestScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 60,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(
-                      color: Colors.grey.shade300,
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 55,
                     ),
-                  ),
-                  child: Text(
-                    "Skip",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: Sizes.size20,
-                      fontWeight: FontWeight.w500,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                        color: Colors.grey.shade300,
+                      ),
+                    ),
+                    child: Text(
+                      "Skip",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: Sizes.size20,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),
                 Gaps.h16,
-                GestureDetector(
-                  onTap: _onNextTap,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 60,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    child: Text(
-                      "Next",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: Sizes.size20,
+                Expanded(
+                  child: GestureDetector(
+                    onTap: _onNextTap,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 55,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      child: Text(
+                        "Next",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: Sizes.size20,
+                        ),
                       ),
                     ),
                   ),
